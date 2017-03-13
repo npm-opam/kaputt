@@ -1,0 +1,10 @@
+Test 'succ test' ... 100/100 cases passed
+Test 'untitled no 1' ... 10/10 cases passed
+Test 'sum of odds' ... 200/200 cases passed
+Test 'strings' ... 0/2 case passed
+  counterexamples: "eYbHu", "UEggsF"
+  categories:
+    short -> 1 occurrence
+    long -> 1 occurrence
+Test 'lists' ... 0/2 case passed
+  counterexamples: [ 6; 5; 1; 3; 6; ], [ 3; 2; 6; ]

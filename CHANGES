@@ -1,0 +1,46 @@
+Version 1.2 (2012-08-29):
+-------------------------
+  - new 'Mock' module providing means of recording calls made to a function
+  - support for specification of partial functions (i. e. raising exceptions)
+  - preprocessor allowing to store tests in separated '.mlt' files
+  - removed deprecated functions
+  - update for OCaml 4.00.0
+  - bug#85: cmi file is not installed
+  - bugfixes to bigarray and nums support
+
+Version 1.1 (2011-02-20):
+-------------------------
+  - update for Objective Caml 3.12.0
+  - new build system (ocamlbuild-based)
+  - assertion builders for data containers
+  - generators for functions (both total and partial)
+  - enumerators for file contents (chars, bytes, lines, and marshalled values)
+  - additional shell commands, and possibility to configure shell syntax
+  - enhanced big array, and big num support
+  - fix for possible non-termination on unsatisfiable precondition
+  - implementation of reduction (to try to produce smaller counterexamples)
+  - bug #51: unportable use of 'which'
+  - bug #57: tests fail on 64-bit platform
+
+Version 1.0 (2009-12-17):
+-------------------------
+  - switch to OCaml 3.11.1
+  - support for enumeration-based tests
+  - new output mode: JUnit-compatible XML
+  - some tests were added
+  - support for ocamlfind installation
+  - minor code refactoring and improvement
+  - bug #45: better handling of dependencies to 'bigarray' and 'num'
+
+Version 1.0-beta (2009-05-31):
+------------------------------
+  - 'Assert.assert_xyz' functions renamed to 'Assert.xyz'
+    (old functions are temporary kept as 'deprecated')
+  - support for Big_int, Num, Map, Set, Hashtbl, Queue, Stack,
+    Weak, and Bigarray
+  - support for shell-based tests
+  - new output modes (HTML, XML, and CSV)
+
+Version 1.0-alpha (2008-11-23):
+-------------------------------
+  - first public version

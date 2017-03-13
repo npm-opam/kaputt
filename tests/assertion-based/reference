@@ -1,0 +1,54 @@
+Test 'function builders' ... passed
+Test 'specialized functions' ... passed
+Test 'equal_bool' ... failed
+  expected `true` but received `false`
+Test 'not_equal_bool' ... failed
+  expected anything excluding `false` but received `false`
+Test 'equal_int' ... failed
+  expected `3` but received `7`
+Test 'not_equal_int' ... failed
+  expected anything excluding `3` but received `3`
+Test 'equal_int32' ... failed
+  expected `3` but received `7`
+Test 'not_equal_int32' ... failed
+  expected anything excluding `3` but received `3`
+Test 'equal_int64' ... failed
+  expected `3` but received `7`
+Test 'not_equal_int64' ... failed
+  expected anything excluding `3` but received `3`
+Test 'equal_nativeint' ... failed
+  expected `3` but received `7`
+Test 'not_equal_nativeint' ... failed
+  expected anything excluding `3` but received `3`
+Test 'equal_char' ... failed
+  expected `'a'` but received `'z'`
+Test 'not_equal_char' ... failed
+  expected anything excluding `'e'` but received `'e'`
+Test 'equal_string' ... failed
+  expected `"azerty"` but received `"qwerty"`
+Test 'not_equal_string' ... failed
+  expected anything excluding `"azerty"` but received `"azerty"`
+Test 'equal_float' ... failed
+  expected `1.` but received `2.`
+Test 'not_equal_float' ... failed
+  expected anything excluding `1.` but received `1.`
+Test 'miscellaneous' ... passed
+Test 'is_true' ... failed
+  expected `true` but received `false`
+Test 'is_false' ... failed
+  expected `false` but received `true`
+Test 'is_some' ... failed
+  expected `Some _` but received `None`
+Test 'is_none' ... failed
+  expected `None` but received `Some _`
+Test 'raises' ... failed
+  expected `any exception` but received `no exception`
+Test 'no_raise' ... failed
+  expected `no exception` but received `an exception`
+Test 'make_raises' ... failed
+  expected `a specific exception` but received `Not_found`
+Test 'Bigarray' ... passed
+Test 'Nums' ... passed
+Test 'Mock (mapping)' ... passed
+Test 'Mock (sequence)' ... passed
+Test 'Mock (function)' ... passed

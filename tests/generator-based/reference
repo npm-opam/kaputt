@@ -1,0 +1,18 @@
+Test 'int * float' ... 0/3 case passed
+  counterexamples: (229, -688.), (3, -872.), (173, -168.)
+Test 'int[1..10] * float[1..2[' ... 0/3 case passed
+  counterexamples: (4, 1.46133971977), (9, 1.18637992055), (8, 1.69966275532)
+Test 'bool * digit * letter * word' ... 0/3 case passed
+  counterexamples: (false, 3, O, "bHu"), (true, 8, E, "ggs"), (true, 5, H, "HvU")
+Test 'string option' ... 0/3 case passed
+  counterexamples: None, Some ("RqhWU")
+Test '(string * number) list' ... 0/3 case passed
+  counterexamples: [ ("OR", "439"); ], [ ("UEg", "672"); ("soHvUdP", "929"); ], [ ("KxeO", "41"); ("dUXKfxz", "810"); ]
+Test '(int[1..10] -> float[1..2[) map' ... 0/3 case passed
+  counterexamples: 4 -> 1.96510941951; 5 -> 1.69964858441; 10 -> 1.41538053991, 1 -> 1.34351888143; 7 -> 1.67222491156; 8 -> 1.58329376737, 6 -> 1.24667131289
+Test 'int list (with reduction)' ... 2/3 cases passed
+  counterexample: [ 1; 4; 9; 14; 2; 1; 7; 9; 10; 12; 9; 7; 14; 13; ] reduced to [ 13; ]
+Test 'Bigarray' ... 0/3 case passed
+  counterexamples: [| 8; 98; 219; |], [| 118; 24; 102; 179; 97; 51; 38; 180; 110; 241; 9; 124; 71; |], [| 121; 35; 83; |]
+Test 'Nums' ... 0/3 case passed
+  counterexamples: -28, 7439, 806

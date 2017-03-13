@@ -1,0 +1,448 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+            "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML>
+<HEAD>
+<TITLE>Kaputt 1.2 
+Reference Manual
+</TITLE>
+
+<META http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<META name="GENERATOR" content="hevea 1.10">
+<STYLE type="text/css">
+.li-itemize{margin:1ex 0ex;}
+.thefootnotes{text-align:left;margin:0ex;}
+.dt-thefootnotes{margin:0em;}
+.dd-thefootnotes{margin:0em 0em 0em 2em;}
+.caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}
+.title{margin:2ex auto;text-align:center}
+.center{text-align:center;margin-left:auto;margin-right:auto;}
+DIV TABLE{margin-left:inherit;margin-right:inherit;}
+PRE{text-align:left;margin-left:0ex;margin-right:auto;}
+BLOCKQUOTE{margin-left:4ex;margin-right:4ex;text-align:left;}
+TD P{margin:0px;}
+.figure{border-top: thin solid black; border-bottom: thin solid black;}
+.caption{border-bottom: thin solid black;}
+BODY{background:white;}
+.title{padding:1ex;background:white;}
+.titlemain{padding:1ex;background:white;}
+.titlerest{padding:1ex;background:white;}
+.section{padding:.5ex;background:#7F7F7F;}
+.chapter{padding:0.5ex;background:#7F7F7F;}
+.ffootnoterule{border:none;margin:1em auto 1em 0px;width:50%;background:#7F7F7F;}
+.ftoc1{list-style:none;margin:0ex 1ex;padding:0ex 1ex;border-left:1ex solid #7F7F7F;}
+.ftoc2{list-style:none;margin:1ex 1ex;padding:0ex 1ex;border-left:1ex solid #7F7F7F;}
+</STYLE>
+</HEAD>
+<BODY >
+<!--HEVEA command line is: hevea -fix -O -exec /usr/local/lib/hevea/xxdate.exe book.hva -o kaputt.html article.hva fancysection.hva kaputt.tex -->
+<!--CUT DEF chapter 1 --><TABLE CLASS="title"><TR><TD><H1 CLASS="titlemain">Kaputt 1.2<BR>
+Reference Manual</H1><H3 CLASS="titlerest">Copyright &#XA9; 2008-2012 Xavier Clerc &#X2013; <A HREF="mailto:kaputt@x9c.fr">kaputt@x9c.fr</A><BR>
+Released under the GPL v3</H3><H3 CLASS="titlerest">August&#XA0;29, 2012</H3></TD></TR>
+</TABLE><!--TOC chapter Contents-->
+<H1 CLASS="chapter"><!--SEC ANCHOR -->Contents</H1><!--SEC END --><UL CLASS="ftoc1"><LI CLASS="li-toc">
+<A HREF="#htoc1">Chapter&#XA0;1&#XA0;&#XA0;Overview</A>
+<UL CLASS="ftoc2"><LI CLASS="li-toc">
+<A HREF="#htoc2">1.1&#XA0;&#XA0;Purpose</A>
+</LI><LI CLASS="li-toc"><A HREF="#htoc3">1.2&#XA0;&#XA0;License</A>
+</LI><LI CLASS="li-toc"><A HREF="#htoc4">1.3&#XA0;&#XA0;Contributions</A>
+</LI></UL>
+</LI><LI CLASS="li-toc"><A HREF="#htoc5">Chapter&#XA0;2&#XA0;&#XA0;Building Kaputt</A>
+<UL CLASS="ftoc2"><LI CLASS="li-toc">
+<A HREF="#htoc6">2.1&#XA0;&#XA0;Step 0: dependencies</A>
+</LI><LI CLASS="li-toc"><A HREF="#htoc7">2.2&#XA0;&#XA0;Step 1: configuration</A>
+</LI><LI CLASS="li-toc"><A HREF="#htoc8">2.3&#XA0;&#XA0;Step 2: compilation</A>
+</LI><LI CLASS="li-toc"><A HREF="#htoc9">2.4&#XA0;&#XA0;Step 3: installation</A>
+</LI></UL>
+</LI><LI CLASS="li-toc"><A HREF="#htoc10">Chapter&#XA0;3&#XA0;&#XA0;Using Kaputt</A>
+<UL CLASS="ftoc2"><LI CLASS="li-toc">
+<A HREF="#htoc11">3.1&#XA0;&#XA0;Running tests from compiled code</A>
+</LI><LI CLASS="li-toc"><A HREF="#htoc12">3.2&#XA0;&#XA0;Running tests from the toplevel</A>
+</LI><LI CLASS="li-toc"><A HREF="#htoc13">3.3&#XA0;&#XA0;Running tests from <TT>.mlt</TT> files</A>
+</LI></UL>
+</LI><LI CLASS="li-toc"><A HREF="#htoc14">Chapter&#XA0;4&#XA0;&#XA0;Writing assertion-based tests</A>
+</LI><LI CLASS="li-toc"><A HREF="#htoc15">Chapter&#XA0;5&#XA0;&#XA0;Writing specification-based tests</A>
+</LI><LI CLASS="li-toc"><A HREF="#htoc16">Chapter&#XA0;6&#XA0;&#XA0;Output modes</A>
+</LI></UL><!--TOC chapter Overview-->
+<H1 CLASS="chapter"><!--SEC ANCHOR --><A NAME="htoc1">Chapter&#XA0;1</A>&#XA0;&#XA0;Overview</H1><!--SEC END --><!--TOC section Purpose-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc2">1.1</A>&#XA0;&#XA0;Purpose</H2><!--SEC END --><P>
+Kaputt is a unit testing tool for the OCaml language<SUP><A NAME="text1" HREF="#note1">1</A></SUP>. Its name stems from the following acronym: <I>Kaputt is A Popperian Unit Testing Tool</I>. The adjective <I>popperian</I> is derived from the name of Karl Popper, a famous philosopher of science who is known for forging the concept of <I>falsifiability</I>. The tribute to Popper is due to the fact that Kaputt, like most test-based methodologies, will never tell you that your function is correct; it can only point out errors.<BR>
+
+Kaputt features two main kinds of tests:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+assertion-based tests, inspired by the <I>xUnit</I> tools<SUP><A NAME="text2" HREF="#note2">2</A></SUP>;
+</LI><LI CLASS="li-itemize">specification-based tests, inspired by the <I>QuickCheck</I> tool<SUP><A NAME="text3" HREF="#note3">3</A></SUP>.
+</LI></UL><P>When writing assertion-based tests, the developer explicitly encodes input values and checks that output values satisfy given assertions. When writing specification-based tests, the developer encodes the specification of the tested function and then requests the library to either generate random values, or enumerate values to be tested against the specification.<BR>
+
+Kaputt also provides shell-based tests that barely execute commands such as <TT>grep</TT>, <TT>diff</TT>, <I>etc</I>. They can be regarded as a special kind of assertion-based tests, and can be useful to run the whole application and compare its output to reference runs whose output has been stored into files.</P><!--TOC section License-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc3">1.2</A>&#XA0;&#XA0;License</H2><!--SEC END --><P>
+Kaputt is distributed under the terms of the <SPAN STYLE="font-variant:small-caps">gpl</SPAN> version 3. This licensing scheme should not cause any problem, as <I>test versions</I> of applications are intended to be used during development but should not be released publicly.</P><!--TOC section Contributions-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc4">1.3</A>&#XA0;&#XA0;Contributions</H2><!--SEC END --><P>
+In order to improve the project, I am primarily looking for testers and bug reporters. Pointing errors in documentation and indicating where it should be enhanced is also very helpful.<BR>
+Bugs and feature requests can be made at <TT><A HREF="http://bugs.x9c.fr">http://bugs.x9c.fr</A></TT>.<BR>
+Other requests can be sent to <A HREF="mailto:kaputt@x9c.fr">kaputt@x9c.fr</A>.
+
+</P><!--BEGIN NOTES chapter-->
+<HR CLASS="ffootnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes">
+<A NAME="note1" HREF="#text1">1</A></DT><DD CLASS="dd-thefootnotes">The official OCaml website can be reached at <TT><A HREF="http://caml.inria.fr">http://caml.inria.fr</A></TT> and contains the full development suite (compilers, tools, virtual machine, <I>etc.</I>) as well as links to third-party contributions.
+</DD><DT CLASS="dt-thefootnotes"><A NAME="note2" HREF="#text2">2</A></DT><DD CLASS="dd-thefootnotes">Unit testing tools for Java (JUnit &#X2013; <TT><A HREF="http://junit.org">http://junit.org</A></TT>), OCaml (OUnit &#X2013; <TT><A HREF="http://www.xs4all.nl/~mmzeeman/ocaml/">http://www.xs4all.nl/~mmzeeman/ocaml/</A></TT>), <I>etc.</I>
+</DD><DT CLASS="dt-thefootnotes"><A NAME="note3" HREF="#text3">3</A></DT><DD CLASS="dd-thefootnotes"><TT><A HREF="http://www.cs.chalmers.se/~rjmh/QuickCheck/">http://www.cs.chalmers.se/~rjmh/QuickCheck/</A></TT>
+</DD></DL>
+<!--END NOTES-->
+<!--TOC chapter Building Kaputt-->
+<H1 CLASS="chapter"><!--SEC ANCHOR --><A NAME="htoc5">Chapter&#XA0;2</A>&#XA0;&#XA0;Building Kaputt</H1><!--SEC END --><!--TOC section Step 0: dependencies-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc6">2.1</A>&#XA0;&#XA0;Step 0: dependencies</H2><!--SEC END --><P>
+Before starting to build Kaputt, one first has to check that dependencies are already installed. The following elements are needed in order to build Kaputt:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+OCaml, version 4.00.0;
+</LI><LI CLASS="li-itemize"><TT>make</TT>, in its GNU Make 3.81 flavor;
+</LI><LI CLASS="li-itemize">a classical Unix shell, such as <TT>bash</TT>;
+</LI><LI CLASS="li-itemize"><B>optionally:</B> Findlib<SUP><A NAME="text4" HREF="#note4">1</A></SUP>, version 1.3.3.
+</LI></UL><!--TOC section Step 1: configuration-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc7">2.2</A>&#XA0;&#XA0;Step 1: configuration</H2><!--SEC END --><P>
+The configuration of Argot is done by executing <TT>./configure</TT>. One can specify elements if they are not correctly inferred by the <TT>configure</TT> script; the following switches are available:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<TT>-ocaml-prefix</TT> to specify the prefix path to the OCaml installation (usually <TT>/usr/local</TT>);
+</LI><LI CLASS="li-itemize"><TT>-ocamlfind</TT> to specify the path to the <TT>ocamlfind</TT> executable;
+</LI><LI CLASS="li-itemize"><TT>-no-native-dynlink</TT> to disable the build of the native version, even if native dynamic linking is available.
+</LI></UL><P>The Java<SUP><A NAME="text5" HREF="#note5">2</A></SUP> version will be built only if the <TT>ocamljava</TT><SUP><A NAME="text6" HREF="#note6">3</A></SUP> compiler is present and located by the makefile. The syntax extension will be compiled only to bytecode.</P><!--TOC section Step 2: compilation-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc8">2.3</A>&#XA0;&#XA0;Step 2: compilation</H2><!--SEC END --><P>
+The actual build of Kaputt is launched by executing <TT>make all</TT>. When build is finished, it is possible to run some simple tests by running <TT>make tests</TT>. Documentation can be generated by running <TT>make doc</TT>.</P><!--TOC section Step 3: installation-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc9">2.4</A>&#XA0;&#XA0;Step 3: installation</H2><!--SEC END --><P>
+Kaputt is installed by executing <TT>make install</TT>. According to local settings, it may be necessary to acquire privileged accesses, running for example <TT>sudo</TT> <TT>make</TT> <TT>install</TT>. The actual installation directory depends on the use of <TT>ocamlfind</TT>: if present the files are placed inside the Findlib hierarchy, otherwise they are placed in the directory <TT>&#X2018;ocamlc -where&#X2018;/kaputt</TT> (<I>i.&#XA0;e.</I> <TT>$PREFIX/lib/ocaml/kaputt</TT>).
+
+</P><!--BEGIN NOTES chapter-->
+<HR CLASS="ffootnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes">
+<A NAME="note4" HREF="#text4">1</A></DT><DD CLASS="dd-thefootnotes">Findlib, a library manager for OCaml, is available at <TT><A HREF="http://projects.camlcity.org/projects/findlib.html">http://projects.camlcity.org/projects/findlib.html</A></TT>.
+</DD><DT CLASS="dt-thefootnotes"><A NAME="note5" HREF="#text5">2</A></DT><DD CLASS="dd-thefootnotes">The official website for the Java Technology can be reached at <TT><A HREF="http://java.sun.com">http://java.sun.com</A></TT>.
+</DD><DT CLASS="dt-thefootnotes"><A NAME="note6" HREF="#text6">3</A></DT><DD CLASS="dd-thefootnotes">OCaml compiler generating Java bytecode, by the same author&#XA0;&#X2013;&#XA0;<TT><A HREF="http://www.ocamljava.org">http://www.ocamljava.org</A></TT>
+</DD></DL>
+<!--END NOTES-->
+<!--TOC chapter Using Kaputt-->
+<H1 CLASS="chapter"><!--SEC ANCHOR --><A NAME="htoc10">Chapter&#XA0;3</A>&#XA0;&#XA0;Using Kaputt</H1><!--SEC END --><!--TOC section Running tests from compiled code-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc11">3.1</A>&#XA0;&#XA0;Running tests from compiled code</H2><!--SEC END --><P>
+To use Kaputt, it is sufficient to compile and link with the library. This is usually done by adding of the following to the compiler invocation:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<TT>-I +kaputt kaputt.cma</TT> (for <TT>ocamlc</TT> compiler);
+</LI><LI CLASS="li-itemize"><TT>-I +kaputt kaputt.cmxa</TT> (for <TT>ocamlopt</TT> compiler);
+</LI><LI CLASS="li-itemize"><TT>-I +kaputt kaputt.cmja</TT> (for <TT>ocamljava</TT> compiler).
+</LI></UL><P>Since version 1.0, to access <TT>bigarray</TT>- and <TT>num</TT>-specific elements, it is necessary to link with respectively <TT>kaputtBigarray.cm[oxj]</TT> and <TT>kaputtNums.cm[oxj]</TT>.<BR>
+
+Typically, the developer wants to compile the code for tests only for internal (test) versions, and not for public (release) versions. Hence the need to be able to build two versions. The <TT>IFDEF</TT> directive of <TT>camlp4</TT> can be used to fulfill this need. Code sample&#XA0;<A HREF="#versions">3.1</A> shows a trivial program that is designed to be compiled either to <I>debug</I> or to <I>release</I> mode.</P><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 3.1: <A NAME="versions"></A>Trivial program featuring two versions (<TT>source.ml</TT>).</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+let () =
+  IFDEF DEBUG THEN
+    print_endline "debug mode on"
+  ELSE
+    print_endline "debug mode off"
+  ENDIF
+</PRE></BLOCKQUOTE><P>To compile the <I>debug</I> version, one of the following commands (according to the compiler used) should be issued:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<TT>ocamlc -pp &#X2019;camlp4oof -DDEBUG&#X2019; source.ml</TT>;
+</LI><LI CLASS="li-itemize"><TT>ocamlopt -pp &#X2019;camlp4oof -DDEBUG&#X2019; source.ml</TT>;
+</LI><LI CLASS="li-itemize"><TT>ocamljava -pp &#X2019;camlp4oof -DDEBUG&#X2019; source.ml</TT>.
+</LI></UL><P>
+At the opposite, to compile the <I>release</I> version, one of following commands should be executed:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<TT>ocamlc -pp camlp4oof source.ml</TT>;
+</LI><LI CLASS="li-itemize"><TT>ocamlopt -pp camlp4oof source.ml</TT>;
+</LI><LI CLASS="li-itemize"><TT>ocamljava -pp camlp4oof source.ml</TT>.
+</LI></UL><P>This means that the developer can choose the version to compile by only specifying a different preprocessor (precisely by enabling/disabling a preprocessor argument) to be used by the invoked OCaml compiler.</P><!--TOC section Running tests from the toplevel-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc12">3.2</A>&#XA0;&#XA0;Running tests from the toplevel</H2><!--SEC END --><P>
+Code sample&#XA0;<A HREF="#generator-toplevel">3.2</A> shows how to use Kaputt from a toplevel session. First, the Kaputt directory is added to the search path. Then, the library is loaded and the module containing shorthand definitions is opened. Finally, the <TT>check</TT> method is used in order to check that the successor of an odd integer is even.</P><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 3.2: <A NAME="generator-toplevel"></A>Toplevel session running a generator-based test.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+        OCaml version 4.00.0
+
+# #directory "+kaputt";;
+# #load "kaputt.cma";;
+# open Kaputt.Abbreviations;;
+# check Gen.int succ [Spec.is_odd_int ==&gt; Spec.is_even_int];;
+Test 'untitled no 1' ... 100/100 cases passed 
+- : unit = ()
+#
+</PRE></BLOCKQUOTE><!--TOC section Running tests from <TT>.mlt</TT> files-->
+<H2 CLASS="section"><!--SEC ANCHOR --><A NAME="htoc13">3.3</A>&#XA0;&#XA0;Running tests from <TT>.mlt</TT> files</H2><!--SEC END --><P>
+Since version 1.2, it is possible to use a preprocessor (named <TT>kaputt_pp.byte</TT>) in order to store tests in <TT>.mlt</TT> files. The underlying idea is to use the file <TT>mod.mlt</TT> to store the tests for the module <TT>Mod</TT> whose implementation is in file <TT>mod.ml</TT>. The preprocessor just appends the contents of <TT>mod.mlt</TT> to <TT>mod.ml</TT> when the compiler processes the file <TT>mod.ml</TT>. If no <TT>.mlt</TT> file is found alongside the <TT>.ml</TT> file, the preprocessor does nothing.<BR>
+
+The <TT>kaputt_pp.byte</TT> should always be invoked with a first parameter either equal to <TT>on</TT> or <TT>off</TT>, indicating whether concatenation of <TT>.ml</TT> and <TT>.mlt</TT> files should occur. The other parameters should indicate which preprocessor to use for the <TT>.ml</TT> file, leading to a command-line with the following form:
+</P><DIV CLASS="center">
+<TT>ocamlc -c -pp &#X2019;./kaputt_pp.byte on camlp4o&#X2019; source.ml</TT>
+</DIV><P>
+or
+</P><DIV CLASS="center">
+<TT>ocamlc -c -pp &#X2019;./kaputt_pp.byte off camlp4o&#X2019; source.ml</TT>
+</DIV><!--TOC paragraph -->
+<H5 CLASS="paragraph"><!--SEC ANCHOR --></H5><!--SEC END --><P>
+This way of organizing tests is useful because is allows to simultaneously:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+have tests stored separately, in their own files;
+</LI><LI CLASS="li-itemize">have test code that can access to every element of the tested module (including non-exported elements);
+</LI><LI CLASS="li-itemize">easily switch between building with or without test code.
+</LI></UL><!--TOC paragraph -->
+<H5 CLASS="paragraph"><!--SEC ANCHOR --></H5><!--SEC END --><P>
+When using the preprocessor while compiling with the <TT>ocamlbuild</TT> tool, one has to be cautious and not to forget to copy <TT>.mlt</TT> files into the build directory of <TT>ocamlbuild</TT>. Assuming that all source files are in the <TT>src</TT> directory and its subdirectories, this can be done through the <TT>ocamlbuild</TT> plugin shown by code sample&#XA0;<A HREF="#ocb-pp">3.3</A>. Then, it is sufficient to tag files with the <TT>kaputt</TT> tag defined by the plugin with a line such as <TT>&lt;src/**/*.ml&gt;: kaputt</TT> in the <TT>_tags</TT> file.</P><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 3.3: <A NAME="ocb-pp"></A><TT>myocamlbuild.ml</TT> file with support for Kaputt preprocessor.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+open Ocamlbuild_plugin
+open Ocamlbuild_pack
+
+let rec copy_mlt_files path =
+  let elements = Pathname.readdir path in
+  Array.iter
+    (fun p -&gt;
+      if Pathname.is_directory (path / p) then
+        copy_mlt_files (path / p)
+      else if Pathname.check_extension p "mlt" then
+        let src = path / p in
+        let dst = !Options.build_dir / path / p in
+        Shell.mkdir_p (!Options.build_dir / path);
+        Pathname.copy src dst
+      else
+        ())
+    elements
+
+let () =
+  dispatch begin function
+    | After_rules -&gt;
+        copy_mlt_files "src";
+        flag ["kaputt"; "pp"]
+          (S [A"kaputt_pp.byte"; A"on"; A"camlp4o"])
+    | _ -&gt; ()
+  end
+</PRE></BLOCKQUOTE><!--TOC chapter Writing assertion-based tests-->
+<H1 CLASS="chapter"><!--SEC ANCHOR --><A NAME="htoc14">Chapter&#XA0;4</A>&#XA0;&#XA0;Writing assertion-based tests</H1><!--SEC END --><P>
+When writing assertion-based tests, one is mainly interested in the <TT>Assertion</TT> and <TT>Test</TT> modules. The <TT>Assertion</TT> module provides various functions performing tests over values. Then, the <TT>Test</TT> module allows to run the tests and get some report about their outcome. An assertion-based test built by the <TT>Test.make_assert_test</TT> function is made of four elements:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+a title;
+</LI><LI CLASS="li-itemize">a <I>set up</I> function, whose signature is <TT>unit -&gt; &#X2019;a</TT>;
+</LI><LI CLASS="li-itemize">a function performing the actual tests, whose signature is <TT>&#X2019;a -&gt; &#X2019;b</TT>;
+</LI><LI CLASS="li-itemize">a <I>tear down</I> function, whose signature is <TT>&#X2019;b -&gt; unit</TT>.
+</LI></UL><P>
+The idea of the <I>set up</I> and <I>tear down</I> functions is that they bracket the execution of the tested function. If there is no data to pass to the test function (<I>i.e.&#XA0;</I>its signature is <TT>unit -&gt; unit</TT>), the obvious choices for <I>set up</I> and <I>tear down</I> are respectively <TT>Test.return ()</TT> and <TT>ignore</TT>; another possibility is to use the <TT>make_simple_test</TT> function. Code sample&#XA0;<A HREF="#assertion-example">4.1</A> shows a short program declaring and running two tests, the first one uses no data while the second one does. The second test also exhibits the fact that the title is optional.<BR>
+
+</P><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 4.1: <A NAME="assertion-example"></A>Assertion-based tests.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+open Kaputt.Abbreviations
+
+let t1 =
+  Test.make_simple_test
+    ~title:"first test"
+    (fun () -&gt; Assert.equal_int 3 (f 2))
+
+let t2 =
+  Test.make_assert_test
+    (fun () -&gt; open_in "data")
+    (fun ch -&gt; Assert.equal_string "waited1" (f1 ch); ch)
+    close_in_noerr
+
+let () = Test.run_tests [t1; t2]
+</PRE></BLOCKQUOTE><P>Mock functions may be useful when writing assertion-based tests. Mock functions are functions that can be created from usual functions, from &#X27E8; input, output &#X27E9; couples, or from &#X27E8; input, output &#X27E9; sequences. They also record all the calls made to the function, allowing to check if the function has been used as expected. Code sample&#XA0;<A HREF="#mock-example">4.2</A> shows how to write an assertion-based test for the <TT>List.map</TT> function, ensuring that the higher-order function is called on each element of the passed list from left to right.</P><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 4.2: <A NAME="mock-example"></A>Mock function and assertion-based tests.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+open Kaputt.Abbreviations
+
+let () =
+  Test.add_simple_test
+    (fun () -&gt;
+      let eq_int_list = Assert.make_equal_list (=) string_of_int in
+      let f = Mock.from_function succ in
+      let i = [0; 1; 2; 0] in
+      let o = List.map (Mock.func f) i in
+      let o' = [1; 2; 3; 1] in
+      eq_int_list o' o;
+      eq_int_list i (Mock.calls f);
+      Assert.equal_int 4 (Mock.total f))
+</PRE></BLOCKQUOTE><!--TOC chapter Writing specification-based tests-->
+<H1 CLASS="chapter"><!--SEC ANCHOR --><A NAME="htoc15">Chapter&#XA0;5</A>&#XA0;&#XA0;Writing specification-based tests</H1><!--SEC END --><P>
+When writing specification-based tests, one is mainly interested in the <TT>Generator</TT>, <TT>Specification</TT>, and <TT>Test</TT> modules. The <TT>Generator</TT> module defines the concept of generator that is a function randomly producing values of a given type, and provides implementations for basic types and combinators. The <TT>Specification</TT> module defines the concept of specification that is predicates over values and their images through the tested function, as well as predicates over basic types and combinators. A specification-based test built by <TT>Test.make_random_test</TT> is made of nine elements (the six first ones being optional):
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+a title;
+</LI><LI CLASS="li-itemize">an integer, indicating how many cases should be generated;
+</LI><LI CLASS="li-itemize">an integer, indicating how tries should be made to generate an input value matching the specification<SUP><A NAME="text7" HREF="#note7">1</A></SUP>;
+</LI><LI CLASS="li-itemize">a classifier, used to categorize the generated cases;
+</LI><LI CLASS="li-itemize">a reducer, used to try to produce smaller counterexamples;
+</LI><LI CLASS="li-itemize">a randomness source;
+</LI><LI CLASS="li-itemize">a generator;
+</LI><LI CLASS="li-itemize">a function to be tested;
+</LI><LI CLASS="li-itemize">a specification.
+</LI></UL><P>The generator, of type <TT>&#X2019;a Generator.t</TT>, is used to randomly produce test cases. Tests cases are produced until the requested number has be reached. One should notice that a test case is counted if and only if the generated value satisfies one of the preconditions of the specification.<BR>
+The classifier is used to characterize the generated test cases to give the developer an overview of the coverage of the test (in the sense that the classifier gives hints about the portions of code actually executed). For complete coverage information, one is advised to use the Bisect tool<SUP><A NAME="text8" HREF="#note8">2</A></SUP> by the same author.<BR>
+
+The specification is a list of &#X27E8;precondition, postcondition&#X27E9; couples. This list should be regarded as a case-based definition. When checking if the function matches its specification, Kaputt will determine the first precondition from the list that holds, and ensure that the corresponding postcondition holds: if not, a counterexample has been found.<BR>
+
+Assuming that the tested function has a signature of <TT>&#X2019;a -&gt; &#X2019;b</TT>, a precondition has type <TT>&#X2019;a predicate</TT> (that is <TT>&#X2019;a -&gt; bool</TT>) and a postcondition has type <TT>(&#X2019;a * &#X2019;b) predicate</TT> (that is <TT>(&#X2019;a * &#X2019;b) -&gt; bool</TT>). The preconditions are evaluated over the generated values, while the postconditions are evaluated over &#X27E8;generated values, image by tested function&#X27E9; couples.<BR>
+An easy way to build &#X27E8;precondition, postcondition&#X27E9; couples is to use the <TT>=&gt;</TT> infix operator. Additionally, the <TT>==&gt;</TT> infix operator can be used when the postcondition is interested only in the image through the function (ignoring the generated value), thus enabling lighter notation.<BR>
+
+Code sample&#XA0;<A HREF="#generator-example">5.1</A> shows how to build a test for function <TT>f</TT> whose domain is the <TT>string</TT> type. The classifier stores generated values into two categories, according to the length of the string. The <TT>pre_</TT><I><SUB>i</SUB></I> functions are of type <TT>string -&gt; bool</TT>, while the <TT>post_</TT><I><SUB>i</SUB></I> functions are of type <TT>(string * t) -&gt; bool</TT> where <TT>t</TT> is the codomain (also sometimes referred to as the &#X201C;range&#X201D;) of the tested function <TT>f</TT>.<BR>
+
+</P><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 5.1: <A NAME="generator-example"></A>Specification-based tests.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+open Kaputt.Abbreviations
+
+let t =
+  Test.make_random_test
+    ~title:"random test"
+    ~nb_runs:128
+    ~classifier:(fun s -&gt; if (String.length s) &lt; 4 then "short" else "long")
+    (Gen.string (Gen.make_int 0 16) Gen.char)
+    f
+    [ pre_1 =&gt; post_1 ;
+      ...
+      pre_n =&gt; post_n ]
+
+let () = Test.run_test t
+</PRE></BLOCKQUOTE><P>It is also possible to write specification for partial function, and to check then though <TT>xyz_partial</TT> functions. Partial functions have a codomain type that is <TT>&#X2019;b outcome</TT> rather than simply <TT>&#X2019;b</TT>. The <TT>Specification.outcome</TT> type is a sum type with two constructors: <TT>Result of &#X2019;b</TT>, and <TT>Exception of exn</TT>. The <TT>Specification</TT> module provides two combinators <TT>is_exception</TT> and <TT>is_result</TT> that allow to respectively test an exceptional result and a normal result. Code sample&#XA0;<A HREF="#partial-example">5.2</A> tests that the tested <TT>f</TT> function (of type <CODE>int -&gt; int</CODE>) raises an exception when passed an odd value, and return an even value when passed an even value.</P><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 5.2: <A NAME="partial-example"></A>Specification-based tests of a partial function.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+open Kaputt.Abbreviations
+
+let () =
+  check_partial
+    Gen.int
+    f
+    [Spec.is_even_int ==&gt; Spec.is_result Spec.is_even_int ;
+     Spec.is_odd_int ==&gt; Spec.is_exception Spec.always ]
+</PRE></BLOCKQUOTE><!--BEGIN NOTES chapter-->
+<HR CLASS="ffootnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes">
+<A NAME="note7" HREF="#text7">1</A></DT><DD CLASS="dd-thefootnotes">Useful to avoid non-terminating issues if a non-satisfiable precondition is passed in the specification.
+</DD><DT CLASS="dt-thefootnotes"><A NAME="note8" HREF="#text8">2</A></DT><DD CLASS="dd-thefootnotes">Code coverage tool for the OCaml language&#XA0;&#X2013;&#XA0;<TT><A HREF="http://bisect.x9c.fr">http://bisect.x9c.fr</A></TT>
+</DD></DL>
+<!--END NOTES-->
+<!--TOC chapter Output modes-->
+<H1 CLASS="chapter"><!--SEC ANCHOR --><A NAME="htoc16">Chapter&#XA0;6</A>&#XA0;&#XA0;Output modes</H1><!--SEC END --><P>
+The previous chapter have exposed how to run tests using the <TT>Test.run_tests</TT> function. When only passed a list of tests, the outcome of these tests is written to the standard output in a (hopefully) user-friendly text setting. It is however possible to change both the destination and the layout by supplying an optional <TT>output</TT> parameter of type <TT>Test.output_mode</TT>, that is a sum type with the following constructors:
+</P><UL CLASS="itemize"><LI CLASS="li-itemize">
+<TT>Text_output of out_channel</TT><BR>
+ classical layout, destination being the given channel &#X2013; <I>cf.&#XA0;</I>&#XA0;code sample&#XA0;<A HREF="#example_text_output">6.1</A>
+</LI><LI CLASS="li-itemize"><TT>Html_output of out_channel</TT><BR>
+ <SPAN STYLE="font-variant:small-caps">html</SPAN> table-based layout, destination being the given channel
+</LI><LI CLASS="li-itemize"><TT>Xml_output of out_channel</TT><BR>
+ <SPAN STYLE="font-variant:small-caps">xml</SPAN> layout using the <SPAN STYLE="font-variant:small-caps">dtd</SPAN> shown by code sample&#XA0;<A HREF="#dtd">6.4</A>, destination being the given channel &#X2013; <I>cf.&#XA0;</I>&#XA0;code sample&#XA0;<A HREF="#example_xml_output">6.2</A>
+</LI><LI CLASS="li-itemize"><TT>Xml_junit_output of out_channel</TT><BR>
+ JUnit-compatible <SPAN STYLE="font-variant:small-caps">xml</SPAN> layout (enabling for instance Jenkins<SUP><A NAME="text9" HREF="#note9">1</A></SUP> integration), destination being the given channel
+</LI><LI CLASS="li-itemize"><TT>Csv_output of out_channel * string</TT><BR>
+ <SPAN STYLE="font-variant:small-caps">csv</SPAN> layout using the given string as the separator, destination being the given channel &#X2013; <I>cf.&#XA0;</I>&#XA0;code sample&#XA0;<A HREF="#example_csv_output">6.3</A>
+</LI></UL><P>
+The passed channel is closed if it is neither <TT>stdout</TT>, nor <TT>stderr</TT>.</P><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 6.1: <A NAME="example_text_output"></A>Example of text output.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+Test 'succ test' ... 100/100 cases passed
+Test 'untitled no 1' ... 10/10 cases passed
+Test 'sum of odds' ... 200/200 cases passed
+Test 'strings' ... 0/2 case passed
+  counterexamples: "eYbHu", "UEggsF"
+  categories:
+    short -&gt; 1 occurrence
+    long -&gt; 1 occurrence
+Test 'lists' ... 0/2 case passed
+  counterexamples: [ 6; 5; 1; 3; 6; ], [ 3; 2; 6; ]
+</PRE>
+</BLOCKQUOTE><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 6.2: <A NAME="example_xml_output"></A>Example of <SPAN STYLE="font-variant:small-caps">xml</SPAN> output.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+&lt;kaputt-report&gt;
+  &lt;random-test name="succ test" valid="100" total="100" uncaught="0"&gt;
+  &lt;/random-test&gt;
+  &lt;random-test name="untitled no 1" valid="10" total="10" uncaught="0"&gt;
+  &lt;/random-test&gt;
+  &lt;random-test name="sum of odds" valid="200" total="200" uncaught="0"&gt;
+  &lt;/random-test&gt;
+  &lt;random-test name="strings" valid="0" total="2" uncaught="0"&gt;
+    &lt;counterexamples&gt;
+      &lt;counterexample value="&amp;quot;OAsdUXKf&amp;quot;"/&gt;
+      &lt;counterexample value="&amp;quot;dhVMK&amp;quot;"/&gt;
+    &lt;/counterexamples&gt;
+    &lt;categories&gt;
+      &lt;category name="long" total="1"/&gt;
+      &lt;category name="short" total="1"/&gt;
+    &lt;/categories&gt;
+  &lt;/random-test&gt;
+  &lt;random-test name="lists" valid="0" total="2" uncaught="0"&gt;
+    &lt;counterexamples&gt;
+      &lt;counterexample value="[ 5; 1; 6; ]"/&gt;
+      &lt;counterexample value="[ 6; 3; ]"/&gt;
+    &lt;/counterexamples&gt;
+  &lt;/random-test&gt;
+&lt;/kaputt-report&gt;
+</PRE>
+</BLOCKQUOTE><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 6.3: <A NAME="example_csv_output"></A>Example of CSV output.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+random-test (stats)|succ test|100|100|0
+random-test (stats)|untitled no 1|10|10|0
+random-test (stats)|sum of odds|200|200|0
+random-test (stats)|strings|0|2|0
+random-test (counterexamples)|strings|"SHwJpJ"|"tbMlVNwqh"
+random-test (stats)|lists|0|2|0
+random-test (counterexamples)|lists|[ 3; 6; 6; ]|[ 3; 4; 5; ]
+</PRE>
+</BLOCKQUOTE><BLOCKQUOTE CLASS="figure">
+<DIV CLASS="caption"><TABLE CELLSPACING=6 CELLPADDING=0><TR><TD VALIGN=top ALIGN=left>Code sample 6.4: <A NAME="dtd"></A><SPAN STYLE="font-variant:small-caps">dtd</SPAN> used for <SPAN STYLE="font-variant:small-caps">xml</SPAN> output.</TD></TR>
+</TABLE></DIV>
+<PRE CLASS="verbatim">
+&lt;!ELEMENT kaputt-report 
+  (passed-test|failed-test|uncaught-exception|random-test|enum-test|shell-test)*&gt;
+
+&lt;!ELEMENT passed-test EMPTY&gt;
+&lt;!ATTLIST passed-test name CDATA #REQUIRED&gt;
+
+&lt;!ELEMENT failed-test EMPTY&gt;
+&lt;!ATTLIST failed-test name CDATA #REQUIRED&gt;
+&lt;!ATTLIST failed-test expected CDATA&gt;
+&lt;!ATTLIST failed-test not-expected CDATA&gt;
+&lt;!ATTLIST failed-test actual CDATA #REQUIRED&gt;
+&lt;!ATTLIST failed-test message CDATA&gt;
+
+&lt;!ELEMENT uncaught-exception EMPTY&gt;
+&lt;!ATTLIST uncaught-exception name CDATA #REQUIRED&gt;
+&lt;!ATTLIST uncaught-exception exception CDATA #REQUIRED&gt;
+
+&lt;!ELEMENT random-test (counterexamples?,categories?)&gt;
+&lt;!ATTLIST random-test name CDATA #REQUIRED&gt;
+&lt;!ATTLIST random-test valid CDATA #REQUIRED&gt;
+&lt;!ATTLIST random-test total CDATA #REQUIRED&gt;
+&lt;!ATTLIST random-test uncaught CDATA #REQUIRED&gt;
+
+&lt;!ELEMENT enum-test (counterexamples?)&gt;
+&lt;!ATTLIST enum-test name CDATA #REQUIRED&gt;
+&lt;!ATTLIST enum-test valid CDATA #REQUIRED&gt;
+&lt;!ATTLIST enum-test total CDATA #REQUIRED&gt;
+&lt;!ATTLIST enum-test uncaught CDATA #REQUIRED&gt;
+
+&lt;!ELEMENT counterexamples (counterexample*)&gt;
+&lt;!ELEMENT counterexample EMPTY&gt;
+&lt;!ATTLIST counterexample value CDATA #REQUIRED&gt;
+
+&lt;!ELEMENT categories (category*)&gt;
+&lt;!ELEMENT category EMPTY&gt;
+&lt;!ATTLIST category name CDATA #REQUIRED&gt;
+&lt;!ATTLIST category total CDATA #REQUIRED&gt;
+
+&lt;!ELEMENT shell-test EMPTY&gt;
+&lt;!ATTLIST shell-test name CDATA #REQUIRED&gt;
+&lt;!ATTLIST shell-test exit-code CDATA #REQUIRED&gt;
+</PRE></BLOCKQUOTE><!--BEGIN NOTES chapter-->
+<HR CLASS="ffootnoterule"><DL CLASS="thefootnotes"><DT CLASS="dt-thefootnotes">
+<A NAME="note9" HREF="#text9">1</A></DT><DD CLASS="dd-thefootnotes">Continuous integration server&#XA0;<TT><A HREF="http://jenkins-ci.org/">http://jenkins-ci.org/</A></TT>
+</DD></DL>
+<!--END NOTES-->
+<!--CUT END -->
+<!--HTMLFOOT-->
+<!--ENDHTML-->
+<!--FOOTER-->
+<HR SIZE=2><BLOCKQUOTE CLASS="quote"><EM>This document was translated from L<sup>A</sup>T<sub>E</sub>X by
+<A HREF="http://hevea.inria.fr/index.html">H<FONT SIZE=2><sup>E</sup></FONT>V<FONT SIZE=2><sup>E</sup></FONT>A</A>.</EM></BLOCKQUOTE></BODY>
+</HTML>

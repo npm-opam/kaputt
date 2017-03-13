@@ -1,0 +1,7 @@
+random-test (stats)|succ test|100|100|0
+random-test (stats)|untitled no 1|10|10|0
+random-test (stats)|sum of odds|200|200|0
+random-test (stats)|strings|0|2|0
+random-test (counterexamples)|strings|"SHwJpJ"|"tbMlVNwqh"
+random-test (stats)|lists|0|2|0
+random-test (counterexamples)|lists|[ 3; 6; 6; ]|[ 3; 4; 5; ]

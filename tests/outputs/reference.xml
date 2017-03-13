@@ -1,0 +1,24 @@
+<kaputt-report>
+  <random-test name="succ test" valid="100" total="100" uncaught="0">
+  </random-test>
+  <random-test name="untitled no 1" valid="10" total="10" uncaught="0">
+  </random-test>
+  <random-test name="sum of odds" valid="200" total="200" uncaught="0">
+  </random-test>
+  <random-test name="strings" valid="0" total="2" uncaught="0">
+    <counterexamples>
+      <counterexample value="&quot;OAsdUXKf&quot;"/>
+      <counterexample value="&quot;dhVMK&quot;"/>
+    </counterexamples>
+    <categories>
+      <category name="long" total="1"/>
+      <category name="short" total="1"/>
+    </categories>
+  </random-test>
+  <random-test name="lists" valid="0" total="2" uncaught="0">
+    <counterexamples>
+      <counterexample value="[ 5; 1; 6; ]"/>
+      <counterexample value="[ 6; 3; ]"/>
+    </counterexamples>
+  </random-test>
+</kaputt-report>
